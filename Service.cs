@@ -27,6 +27,17 @@ namespace Vakhitova_Autoservice
         public string DurationInSeconds { get; set; }
         public decimal Cost { get; set; }
         public double Discount { get; set; }
+
+        // скидка
+        public int DiscountIt
+        {
+            get
+            {
+                return (int)(Discount * 100);
+            }
+        }
+        //
+
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
