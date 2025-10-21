@@ -320,5 +320,11 @@ namespace Vakhitova_Autoservice
                 ServiceListView.ItemsSource = Vakhitova_AutoserviceEntities.GetContext().Service.ToList();
             }
         }
+
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            //открыть окно записи клиента на выбранную услугу
+            Manager.MainFrame.Navigate(new SignUpPage((sender as Button).DataContext as Service));
+        }
     }
 }

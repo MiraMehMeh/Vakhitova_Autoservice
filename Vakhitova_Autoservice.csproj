@@ -102,6 +102,9 @@
     <Compile Include="ServicePhoto.cs">
       <DependentUpon>VakhitovaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tag.cs">
       <DependentUpon>VakhitovaModel.tt</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SignUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -159,6 +166,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -171,9 +179,6 @@
     <None Include="VakhitovaModel.edmx.diagram">
       <DependentUpon>VakhitovaModel.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\service_logo.png" />
@@ -200,10 +205,15 @@
     <Resource Include="Услуги автосервиса\Шиномонтаж.jpg" />
     <Resource Include="Услуги автосервиса\Электрика.png" />
     <Resource Include="Resources\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="VakhitovaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VakhitovaModel.Context.cs</LastGenOutput>
       <DependentUpon>VakhitovaModel.edmx</DependentUpon>
+      <LastGenOutput>VakhitovaModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="VakhitovaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -211,9 +221,5 @@
       <LastGenOutput>VakhitovaModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

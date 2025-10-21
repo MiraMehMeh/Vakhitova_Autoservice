@@ -25,7 +25,7 @@ namespace Vakhitova_Autoservice
 
             return _context;
         }
-        //добавлено 
+        // добавлено
 
         public Vakhitova_AutoserviceEntities()
             : base("name=Vakhitova_AutoserviceEntities")

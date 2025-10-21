@@ -45,10 +45,13 @@ namespace Vakhitova_Autoservice
                 errors.AppendLine("Укажите стоимость услуги");
 
             if (_currentServise.DiscountIt < 0 && _currentServise.DiscountIt >= 100)
-                errors.AppendLine("Укажите скидку");
+                errors.AppendLine("Укажите скидку от 0 до 100");
 
-            if (string.IsNullOrWhiteSpace(_currentServise.DurationInSeconds))
+            if (_currentServise.DurationInSeconds == 0)
                 errors.AppendLine("Укажите длительность услуги");
+
+            if (_currentServise.DurationInSeconds > 240 || _currentServise.DurationInSeconds < 0)
+                errors.AppendLine("Длительность не может быть больше 240 минут и меньше 0 минут");
 
             if (errors.Length > 0)
             {
@@ -56,21 +59,33 @@ namespace Vakhitova_Autoservice
                 return;
             }
 
-            // добавить в контекст текущие значения новой услуги
-            if (_currentServise.ID == 0)
-                Vakhitova_AutoserviceEntities.GetContext().Service.Add(_currentServise);
 
-            // сохранить изменения если при этом не получилось никаких ошибок
-            try
+            var allServices = Vakhitova_AutoserviceEntities.GetContext().Service.ToList();
+            allServices = allServices.Where(p => p.Title == _currentServise.Title).ToList();
+            
+            if (allServices.Count == 0)
             {
-                Vakhitova_AutoserviceEntities.GetContext().SaveChanges();
-                MessageBox.Show("информация сохранена");
-                Manager.MainFrame.GoBack();
+                // добавить в контекст текущие значения новой услуги
+                if (_currentServise.ID == 0)
+                    Vakhitova_AutoserviceEntities.GetContext().Service.Add(_currentServise);
+
+                // сохранить изменения если при этом не получилось никаких ошибок
+                try
+                {
+                    Vakhitova_AutoserviceEntities.GetContext().SaveChanges();
+                    MessageBox.Show("информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
 
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Уже существует такая услуга");
             }
         }
     }
